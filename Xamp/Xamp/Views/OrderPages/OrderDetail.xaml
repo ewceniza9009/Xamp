@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Xamp.Views.OrderPages.OrderDetail"
+             Title="ORDER DETAIL">
+  <ContentPage.Content>
+        <StackLayout Padding="20,10,20,0">
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Order #: " />
+                    <Label Text="{Binding WithdrawalOrderNumber}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Date: " />
+                    <Label Text="{Binding WithdrawalOrderDate, StringFormat='{0:M/d/yyyy hh:mm tt}'}"/>
+                </StackLayout>
+            </StackLayout >
+            <StackLayout Orientation="Vertical"
+                         Padding="0,10">
+                <ListView x:Name="listOrderMaterial"
+                          HasUnevenRows="True"
+                          ItemsSource="{Binding WithdrawalOrderMaterial}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal"
+                                                 VerticalOptions="Center"
+                                                 HeightRequest="30">
+                                        <Label Text="{Binding MaterialName}"/>
+                                        <Label Text="{Binding UnitName, StringFormat='| {0}'}"/>
+                                        <Label Text="{Binding Batch, StringFormat='| {0}'}"/>
+                                        <Label Text="{Binding Quantity, StringFormat='| Qty: {0:#,#,#,#.00}'}" TextColor="Black"></Label>
+                                        <Label Text="{Binding Weight, StringFormat='| Wt: {0:#,#,#,#.00}'}" TextColor="Black"></Label>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center"
+                         Padding="0,0,0,5">
+                <Button x:Name="CmdApprove" 
+                                    Text="{Binding ApproveStatus}"
+                                    Margin="20,0,20,0"
+                                    Clicked="CmdApprove_Clicked"
+                                    BackgroundColor="Blue"
+                                    TextColor="White"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Xamp.Views.OrderPages.OrderListA"
+             Title="APPROVED ORDERS">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical">
+                <ListView x:Name="listOrder"
+                          HasUnevenRows="True"
+                          ItemTapped="ListOrder_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Vertical"
+                                                 HeightRequest="80"
+                                                 VerticalOptions="Center"
+                                                 Padding="20,10,20,0">
+                                            <Label 
+                                            Text="{Binding WithdrawalOrderNumber}" 
+                                            TextColor="Black"></Label>
+                                            <Label 
+                                            Text="{Binding WarehouseCode, StringFormat='Warehouse: {0}'}" 
+                                            TextColor="Black"></Label>
+                                            <Label 
+                                            Text="{Binding WithdrawalOrderDate, StringFormat='Date : {0:M/d/yyyy}'}" 
+                                            TextColor="Black"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                     HeightRequest="80"
+                                                     VerticalOptions="Center"
+                                                     Padding="20,10,20,0">
+                                            <Label Text="Net Wt. (Kg):"
+                                                   FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding NetWeight, StringFormat='{0:#,#,#,#.00}'}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="Large"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="tpl_main" Class="tplDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=EWCENIZA\SQLSERV17;Initial Catalog=tpl_main;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="tpl_mainConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.mstMaterial" Member="mstMaterials">
+    <Type Name="mstMaterial">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaterialNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BrandCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaterialName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NumberOfDaysToExpiry" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaterialCategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FixedWeight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="WeightType" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Category" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="mstMaterial_mstMaterialInventory" Member="mstMaterialInventories" ThisKey="Id" OtherKey="MaterialId" Type="mstMaterialInventory" />
+      <Association Name="mstMaterial_TrnPCDetail" Member="TrnPCDetails" ThisKey="Id" OtherKey="MaterialId" Type="TrnPCDetail" />
+      <Association Name="mstMaterial_TrnStoragePickMaterial" Member="TrnStoragePickMaterials" ThisKey="Id" OtherKey="MaterialId" Type="TrnStoragePickMaterial" />
+      <Association Name="mstMaterial_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="MaterialId" Type="TrnStorageInventory" />
+      <Association Name="mstMaterial_TrnStorageReceivingPallet" Member="TrnStorageReceivingPallets" ThisKey="Id" OtherKey="MaterialId" Type="TrnStorageReceivingPallet" />
+      <Association Name="mstMaterial_TrnStorageStockTransferMaterial" Member="TrnStorageStockTransferMaterials" ThisKey="Id" OtherKey="MaterialId" Type="TrnStorageStockTransferMaterial" />
+      <Association Name="mstMaterial_trnWithdrawalOrderBatch" Member="trnWithdrawalOrderBatches" ThisKey="Id" OtherKey="MaterialId" Type="trnWithdrawalOrderBatch" />
+      <Association Name="mstMaterial_trnWithdrawalOrderMaterial" Member="trnWithdrawalOrderMaterials" ThisKey="Id" OtherKey="MaterialId" Type="trnWithdrawalOrderMaterial" />
+      <Association Name="mstMaterialCategory_mstMaterial" Member="mstMaterialCategory" ThisKey="MaterialCategoryId" OtherKey="Id" Type="mstMaterialCategory" IsForeignKey="true" />
+      <Association Name="mstCustomer_mstMaterial" Member="mstCustomer" ThisKey="CustomerId" OtherKey="Id" Type="mstCustomer" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstMaterialCategory" Member="mstMaterialCategories">
+    <Type Name="mstMaterialCategory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaterialCategoryNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaterialCategoryName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaterialInitials" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="mstMaterialCategory_mstMaterial" Member="mstMaterials" ThisKey="Id" OtherKey="MaterialCategoryId" Type="mstMaterial" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstMaterialInventory" Member="mstMaterialInventories">
+    <Type Name="mstMaterialInventory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReceivingId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConversionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="InQuantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="OutQuantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="OnHandQuantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrigQuantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="OrigWeight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConversionType" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[select]" Member="select" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="mstMaterial_mstMaterialInventory" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_mstMaterialInventory" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="MstWarehouse_mstMaterialInventory" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="mstLocation_mstMaterialInventory" Member="mstLocation" ThisKey="LocationId" OtherKey="Id" Type="mstLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstMaterialUnit" Member="mstMaterialUnits">
+    <Type Name="mstMaterialUnit">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ConvertedUnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstRoom" Member="mstRooms">
+    <Type Name="mstRoom">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RoomName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TemperatureFrom" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="TemperatureTo" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Unit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="mstRoom_mstLocation" Member="mstLocations" ThisKey="Id" OtherKey="RoomId" Type="mstLocation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstUnit" Member="mstUnits">
+    <Type Name="mstUnit">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UnitNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="mstUnit_mstMaterialInventory" Member="mstMaterialInventories" ThisKey="Id" OtherKey="UnitId" Type="mstMaterialInventory" />
+      <Association Name="mstUnit_TrnStoragePickMaterial" Member="TrnStoragePickMaterials" ThisKey="Id" OtherKey="UnitId" Type="TrnStoragePickMaterial" />
+      <Association Name="mstUnit_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="UnitId" Type="TrnStorageInventory" />
+      <Association Name="mstUnit_TrnStorageReceivingPallet" Member="TrnStorageReceivingPallets" ThisKey="Id" OtherKey="UnitId" Type="TrnStorageReceivingPallet" />
+      <Association Name="mstUnit_TrnStorageStockTransferMaterial" Member="TrnStorageStockTransferMaterials" ThisKey="Id" OtherKey="UnitId" Type="TrnStorageStockTransferMaterial" />
+      <Association Name="mstUnit_trnWithdrawalOrderBatch" Member="trnWithdrawalOrderBatches" ThisKey="Id" OtherKey="UnitId" Type="trnWithdrawalOrderBatch" />
+      <Association Name="mstUnit_trnWithdrawalOrderMaterial" Member="trnWithdrawalOrderMaterials" ThisKey="Id" OtherKey="UnitId" Type="trnWithdrawalOrderMaterial" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstSupplier" Member="mstSuppliers">
+    <Type Name="mstSupplier">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SupplierNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ChartOfAccountId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreditLimit" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="TermId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPerson" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPosition" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstCustomer" Member="mstCustomers">
+    <Type Name="mstCustomer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ChartOfAccountId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreditLimit" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="TermId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TINNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FaxNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPerson" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPosition" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="SalesPerson" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="VatId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="mstCustomer_mstMaterial" Member="mstMaterials" ThisKey="Id" OtherKey="CustomerId" Type="mstMaterial" />
+      <Association Name="mstCustomer_TrnStoragePick" Member="TrnStoragePicks" ThisKey="Id" OtherKey="CustomerId" Type="TrnStoragePick" />
+      <Association Name="mstCustomer_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="CustomerId" Type="TrnStorageInventory" />
+      <Association Name="mstCustomer_TrnStorageReceiving" Member="TrnStorageReceivings" ThisKey="Id" OtherKey="CustomerId" Type="TrnStorageReceiving" />
+      <Association Name="mstCustomer_trnWithdrawalOrder" Member="trnWithdrawalOrders" ThisKey="Id" OtherKey="CustomerID" Type="trnWithdrawalOrder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstCompany" Member="mstCompanies">
+    <Type Name="mstCompany">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="companyName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="companyAddress" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="logoPicturePath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="contactNo" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="tin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="bookNo" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="accreditNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="serialNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="permitNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="machineNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="operatedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="systemPath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="currentUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="defaultStation" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DefaultApproveBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Accountant" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FinanceManager" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OperationsManager" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ManagingDirector" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="mstCompany_MstWarehouse" Member="MstWarehouses" ThisKey="Id" OtherKey="CompanyId" Type="MstWarehouse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MstWarehouse" Member="MstWarehouses">
+    <Type Name="MstWarehouse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WarehouseCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WarehouseName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="MstWarehouse_mstMaterialInventory" Member="mstMaterialInventories" ThisKey="Id" OtherKey="WarehouseId" Type="mstMaterialInventory" />
+      <Association Name="MstWarehouse_TrnPC" Member="TrnPCs" ThisKey="Id" OtherKey="WarehouseId" Type="TrnPC" />
+      <Association Name="MstWarehouse_TrnStoragePick" Member="TrnStoragePicks" ThisKey="Id" OtherKey="WarehouseId" Type="TrnStoragePick" />
+      <Association Name="MstWarehouse_TrnStoragePick1" Member="TrnStoragePicks1" ThisKey="Id" OtherKey="WOFromWarehouseId" Type="TrnStoragePick" />
+      <Association Name="MstWarehouse_TrnStorageReceiving" Member="TrnStorageReceivings" ThisKey="Id" OtherKey="WarehouseId" Type="TrnStorageReceiving" />
+      <Association Name="MstWarehouse_TrnStorageReceiving1" Member="TrnStorageReceivings1" ThisKey="Id" OtherKey="PickFromWarehouseId" Type="TrnStorageReceiving" />
+      <Association Name="MstWarehouse_TrnStorageStockTransfer" Member="TrnStorageStockTransfers" ThisKey="Id" OtherKey="WarehouseId" Type="TrnStorageStockTransfer" />
+      <Association Name="MstWarehouse_TrnStorageStockTransfer1" Member="TrnStorageStockTransfers1" ThisKey="Id" OtherKey="ToWarehouseId" Type="TrnStorageStockTransfer" />
+      <Association Name="MstWarehouse_trnWithdrawalOrder" Member="trnWithdrawalOrders" ThisKey="Id" OtherKey="WarehouseId" Type="trnWithdrawalOrder" />
+      <Association Name="MstWarehouse_trnWithdrawalOrderBatch" Member="trnWithdrawalOrderBatches" ThisKey="Id" OtherKey="WarehouseId" Type="trnWithdrawalOrderBatch" />
+      <Association Name="mstCompany_MstWarehouse" Member="mstCompany" ThisKey="CompanyId" OtherKey="Id" Type="mstCompany" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sysUser" Member="sysUsers">
+    <Type Name="sysUser">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="telephoneNumber" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CanOverride" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="sysUser_TrnPC" Member="TrnPCs" ThisKey="Id" OtherKey="CreatedBy" Type="TrnPC" />
+      <Association Name="sysUser_TrnPC1" Member="TrnPCs1" ThisKey="Id" OtherKey="UpdatedBy" Type="TrnPC" />
+      <Association Name="sysUser_TrnStoragePick" Member="TrnStoragePicks" ThisKey="Id" OtherKey="CreatedBy" Type="TrnStoragePick" />
+      <Association Name="sysUser_TrnStoragePick1" Member="TrnStoragePicks1" ThisKey="Id" OtherKey="UpdatedBy" Type="TrnStoragePick" />
+      <Association Name="sysUser_TrnStorageReceiving" Member="TrnStorageReceivings" ThisKey="Id" OtherKey="CreatedBy" Type="TrnStorageReceiving" />
+      <Association Name="sysUser_TrnStorageReceiving1" Member="TrnStorageReceivings1" ThisKey="Id" OtherKey="UpdatedBy" Type="TrnStorageReceiving" />
+      <Association Name="sysUser_TrnStorageReceivingPallet" Member="TrnStorageReceivingPallets" ThisKey="Id" OtherKey="CreatedBy" Type="TrnStorageReceivingPallet" />
+      <Association Name="sysUser_TrnStorageReceivingPallet1" Member="TrnStorageReceivingPallets1" ThisKey="Id" OtherKey="UpdatedBy" Type="TrnStorageReceivingPallet" />
+      <Association Name="sysUser_TrnStorageStockTransfer" Member="TrnStorageStockTransfers" ThisKey="Id" OtherKey="CreatedById" Type="TrnStorageStockTransfer" />
+      <Association Name="sysUser_TrnStorageStockTransfer1" Member="TrnStorageStockTransfers1" ThisKey="Id" OtherKey="UpdatedById" Type="TrnStorageStockTransfer" />
+      <Association Name="sysUser_trnWithdrawalOrder" Member="trnWithdrawalOrders" ThisKey="Id" OtherKey="CreatedBy" Type="trnWithdrawalOrder" />
+      <Association Name="sysUser_trnWithdrawalOrder1" Member="trnWithdrawalOrders1" ThisKey="Id" OtherKey="UpdatedBy" Type="trnWithdrawalOrder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnPC" Member="TrnPCs">
+    <Type Name="TrnPC">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PickNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PCDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Particulars" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="TrnPC_TrnPCDetail" Member="TrnPCDetails" ThisKey="Id" OtherKey="PCId" Type="TrnPCDetail" />
+      <Association Name="MstWarehouse_TrnPC" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="sysUser_TrnPC" Member="sysUser" ThisKey="CreatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="sysUser_TrnPC1" Member="sysUser1" ThisKey="UpdatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnPCDetail" Member="TrnPCDetails">
+    <Type Name="TrnPCDetail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PCId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StorageReceivingPalletId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="PQuantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="PWeight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="mstMaterial_TrnPCDetail" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="TrnPC_TrnPCDetail" Member="TrnPC" ThisKey="PCId" OtherKey="Id" Type="TrnPC" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TrnStorageReceivingPallet_TrnPCDetail" Member="TrnStorageReceivingPallet" ThisKey="StorageReceivingPalletId" OtherKey="Id" Type="TrnStorageReceivingPallet" IsForeignKey="true" />
+      <Association Name="mstLocation_TrnPCDetail" Member="mstLocation" ThisKey="LocationId" OtherKey="Id" Type="mstLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStoragePick" Member="TrnStoragePicks">
+    <Type Name="TrnStoragePick">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WOFromWarehouseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WithdrawalOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PickNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PickDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="Particulars" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="IsReleased" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="OldStoragePickId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TrnStoragePick_TrnStoragePickMaterial" Member="TrnStoragePickMaterials" ThisKey="Id" OtherKey="StoragePickId" Type="TrnStoragePickMaterial" />
+      <Association Name="TrnStoragePick_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="StoragePickId" Type="TrnStorageInventory" />
+      <Association Name="mstCustomer_TrnStoragePick" Member="mstCustomer" ThisKey="CustomerId" OtherKey="Id" Type="mstCustomer" IsForeignKey="true" />
+      <Association Name="MstWarehouse_TrnStoragePick" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="MstWarehouse_TrnStoragePick1" Member="MstWarehouse1" ThisKey="WOFromWarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStoragePick" Member="sysUser" ThisKey="CreatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStoragePick1" Member="sysUser1" ThisKey="UpdatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="trnWithdrawalOrder_TrnStoragePick" Member="trnWithdrawalOrder" ThisKey="WithdrawalOrderId" OtherKey="Id" Type="trnWithdrawalOrder" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStoragePickMaterial" Member="TrnStoragePickMaterials">
+    <Type Name="TrnStoragePickMaterial">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StoragePickId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StorageReceivingPalletId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="Factor" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="mstMaterial_TrnStoragePickMaterial" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_TrnStoragePickMaterial" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="TrnStoragePick_TrnStoragePickMaterial" Member="TrnStoragePick" ThisKey="StoragePickId" OtherKey="Id" Type="TrnStoragePick" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TrnStorageReceivingPallet_TrnStoragePickMaterial" Member="TrnStorageReceivingPallet" ThisKey="StorageReceivingPalletId" OtherKey="Id" Type="TrnStorageReceivingPallet" IsForeignKey="true" />
+      <Association Name="mstLocation_TrnStoragePickMaterial" Member="mstLocation" ThisKey="LocationId" OtherKey="Id" Type="mstLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStorageInventory" Member="TrnStorageInventories">
+    <Type Name="TrnStorageInventory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InventoryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StorageReceivingId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StorageReceivingPalletId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StoragePickId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InQuantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="OutQuantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Association Name="mstCustomer_TrnStorageInventory" Member="mstCustomer" ThisKey="CustomerId" OtherKey="Id" Type="mstCustomer" IsForeignKey="true" />
+      <Association Name="mstMaterial_TrnStorageInventory" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_TrnStorageInventory" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="TrnStoragePick_TrnStorageInventory" Member="TrnStoragePick" ThisKey="StoragePickId" OtherKey="Id" Type="TrnStoragePick" IsForeignKey="true" />
+      <Association Name="TrnStorageReceiving_TrnStorageInventory" Member="TrnStorageReceiving" ThisKey="StorageReceivingId" OtherKey="Id" Type="TrnStorageReceiving" IsForeignKey="true" />
+      <Association Name="TrnStorageReceivingPallet_TrnStorageInventory" Member="TrnStorageReceivingPallet" ThisKey="StorageReceivingPalletId" OtherKey="Id" Type="TrnStorageReceivingPallet" IsForeignKey="true" />
+      <Association Name="mstLocation_TrnStorageInventory" Member="mstLocation" ThisKey="LocationId" OtherKey="Id" Type="mstLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStorageReceiving" Member="TrnStorageReceivings">
+    <Type Name="TrnStorageReceiving">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ReceivingOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReceivingNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PickFromWarehouseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StoragePickId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReceivingDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ReceivingTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TruckPlateNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ManufactureDateHeader" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoDaysToPrompAlertHeader" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="ContainerNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsFreezing" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ReceivedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="OldStorageReceivingId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TrnStorageReceiving_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="StorageReceivingId" Type="TrnStorageInventory" />
+      <Association Name="TrnStorageReceiving_TrnStorageReceivingPallet" Member="TrnStorageReceivingPallets" ThisKey="Id" OtherKey="StorageReceivingId" Type="TrnStorageReceivingPallet" />
+      <Association Name="mstCustomer_TrnStorageReceiving" Member="mstCustomer" ThisKey="CustomerId" OtherKey="Id" Type="mstCustomer" IsForeignKey="true" />
+      <Association Name="MstWarehouse_TrnStorageReceiving" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStorageReceiving" Member="sysUser" ThisKey="CreatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStorageReceiving1" Member="sysUser1" ThisKey="UpdatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="MstWarehouse_TrnStorageReceiving1" Member="MstWarehouse1" ThisKey="PickFromWarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStorageReceivingPallet" Member="TrnStorageReceivingPallets">
+    <Type Name="TrnStorageReceivingPallet">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StorageReceivingId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReceivingOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PalletNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ManualPalletNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weighted" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BoxNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VendorBatchNumber" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="BatchCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoDaysToPrompAlert" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ManufactureDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayUnitCode" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="WeightPerQuantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="GrossWeight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="PackageTareWeight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="PalletTareWeight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="NetWeight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="ArrivalSequenceNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SourceBarcode" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="LastMaterial" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="TrnStorageReceivingPallet_TrnPCDetail" Member="TrnPCDetails" ThisKey="Id" OtherKey="StorageReceivingPalletId" Type="TrnPCDetail" />
+      <Association Name="TrnStorageReceivingPallet_TrnStoragePickMaterial" Member="TrnStoragePickMaterials" ThisKey="Id" OtherKey="StorageReceivingPalletId" Type="TrnStoragePickMaterial" />
+      <Association Name="TrnStorageReceivingPallet_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="StorageReceivingPalletId" Type="TrnStorageInventory" />
+      <Association Name="TrnStorageReceivingPallet_TrnStorageStockTransferMaterial" Member="TrnStorageStockTransferMaterials" ThisKey="Id" OtherKey="StorageReceivingPalletId" Type="TrnStorageStockTransferMaterial" />
+      <Association Name="mstMaterial_TrnStorageReceivingPallet" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_TrnStorageReceivingPallet" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStorageReceivingPallet" Member="sysUser" ThisKey="CreatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStorageReceivingPallet1" Member="sysUser1" ThisKey="UpdatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="TrnStorageReceiving_TrnStorageReceivingPallet" Member="TrnStorageReceiving" ThisKey="StorageReceivingId" OtherKey="Id" Type="TrnStorageReceiving" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="mstLocation_TrnStorageReceivingPallet" Member="mstLocation" ThisKey="LocationId" OtherKey="Id" Type="mstLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStorageStockTransfer" Member="TrnStorageStockTransfers">
+    <Type Name="TrnStorageStockTransfer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ToWarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Particulars" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ManualSTNumber" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedById" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedById" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="TrnStorageStockTransfer_TrnStorageStockTransferMaterial" Member="TrnStorageStockTransferMaterials" ThisKey="Id" OtherKey="StorageStockTransferId" Type="TrnStorageStockTransferMaterial" />
+      <Association Name="MstWarehouse_TrnStorageStockTransfer" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="MstWarehouse_TrnStorageStockTransfer1" Member="MstWarehouse1" ThisKey="ToWarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStorageStockTransfer" Member="sysUser" ThisKey="CreatedById" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="sysUser_TrnStorageStockTransfer1" Member="sysUser1" ThisKey="UpdatedById" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStorageStockTransferMaterial" Member="TrnStorageStockTransferMaterials">
+    <Type Name="TrnStorageStockTransferMaterial">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StorageStockTransferId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StorageReceivingPalletId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Association Name="mstMaterial_TrnStorageStockTransferMaterial" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_TrnStorageStockTransferMaterial" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="TrnStorageReceivingPallet_TrnStorageStockTransferMaterial" Member="TrnStorageReceivingPallet" ThisKey="StorageReceivingPalletId" OtherKey="Id" Type="TrnStorageReceivingPallet" IsForeignKey="true" />
+      <Association Name="TrnStorageStockTransfer_TrnStorageStockTransferMaterial" Member="TrnStorageStockTransfer" ThisKey="StorageStockTransferId" OtherKey="Id" Type="TrnStorageStockTransfer" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="mstLocation_TrnStorageStockTransferMaterial" Member="mstLocation" ThisKey="LocationId" OtherKey="Id" Type="mstLocation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trnWithdrawalOrder" Member="trnWithdrawalOrders">
+    <Type Name="trnWithdrawalOrder">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WithdrawalOrderNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WithdrawalOrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Particulars" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsApproved" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="OldWithdrawalOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="trnWithdrawalOrder_TrnStoragePick" Member="TrnStoragePicks" ThisKey="Id" OtherKey="WithdrawalOrderId" Type="TrnStoragePick" />
+      <Association Name="trnWithdrawalOrder_trnWithdrawalOrderBatch" Member="trnWithdrawalOrderBatches" ThisKey="Id" OtherKey="WithdrawalOrderId" Type="trnWithdrawalOrderBatch" />
+      <Association Name="trnWithdrawalOrder_trnWithdrawalOrderMaterial" Member="trnWithdrawalOrderMaterials" ThisKey="Id" OtherKey="WithdrawalOrderId" Type="trnWithdrawalOrderMaterial" />
+      <Association Name="mstCustomer_trnWithdrawalOrder" Member="mstCustomer" ThisKey="CustomerID" OtherKey="Id" Type="mstCustomer" IsForeignKey="true" />
+      <Association Name="MstWarehouse_trnWithdrawalOrder" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="sysUser_trnWithdrawalOrder" Member="sysUser" ThisKey="CreatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+      <Association Name="sysUser_trnWithdrawalOrder1" Member="sysUser1" ThisKey="UpdatedBy" OtherKey="Id" Type="sysUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trnWithdrawalOrderBatch" Member="trnWithdrawalOrderBatches">
+    <Type Name="trnWithdrawalOrderBatch">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WarehouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WithdrawalOrderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BatchCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Association Name="mstMaterial_trnWithdrawalOrderBatch" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_trnWithdrawalOrderBatch" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="MstWarehouse_trnWithdrawalOrderBatch" Member="MstWarehouse" ThisKey="WarehouseId" OtherKey="Id" Type="MstWarehouse" IsForeignKey="true" />
+      <Association Name="trnWithdrawalOrder_trnWithdrawalOrderBatch" Member="trnWithdrawalOrder" ThisKey="WithdrawalOrderId" OtherKey="Id" Type="trnWithdrawalOrder" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trnWithdrawalOrderMaterial" Member="trnWithdrawalOrderMaterials">
+    <Type Name="trnWithdrawalOrderMaterial">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WithdrawalOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaterialId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OldStorageReceivingId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="mstMaterial_trnWithdrawalOrderMaterial" Member="mstMaterial" ThisKey="MaterialId" OtherKey="Id" Type="mstMaterial" IsForeignKey="true" />
+      <Association Name="mstUnit_trnWithdrawalOrderMaterial" Member="mstUnit" ThisKey="UnitId" OtherKey="Id" Type="mstUnit" IsForeignKey="true" />
+      <Association Name="trnWithdrawalOrder_trnWithdrawalOrderMaterial" Member="trnWithdrawalOrder" ThisKey="WithdrawalOrderId" OtherKey="Id" Type="trnWithdrawalOrder" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mstLocation" Member="mstLocations">
+    <Type Name="mstLocation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LocationNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LocationName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Bay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Column]" Member="Column" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Row" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RoomId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Capacity" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="TotalWeight" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="PalletCount" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsLocked" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="mstLocation_mstMaterialInventory" Member="mstMaterialInventories" ThisKey="Id" OtherKey="LocationId" Type="mstMaterialInventory" />
+      <Association Name="mstLocation_TrnPCDetail" Member="TrnPCDetails" ThisKey="Id" OtherKey="LocationId" Type="TrnPCDetail" />
+      <Association Name="mstLocation_TrnStoragePickMaterial" Member="TrnStoragePickMaterials" ThisKey="Id" OtherKey="LocationId" Type="TrnStoragePickMaterial" />
+      <Association Name="mstLocation_TrnStorageInventory" Member="TrnStorageInventories" ThisKey="Id" OtherKey="LocationId" Type="TrnStorageInventory" />
+      <Association Name="mstLocation_TrnStorageReceivingPallet" Member="TrnStorageReceivingPallets" ThisKey="Id" OtherKey="LocationId" Type="TrnStorageReceivingPallet" />
+      <Association Name="mstLocation_TrnStorageStockTransferMaterial" Member="TrnStorageStockTransferMaterials" ThisKey="Id" OtherKey="LocationId" Type="TrnStorageStockTransferMaterial" />
+      <Association Name="mstRoom_mstLocation" Member="mstRoom" ThisKey="RoomId" OtherKey="Id" Type="mstRoom" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

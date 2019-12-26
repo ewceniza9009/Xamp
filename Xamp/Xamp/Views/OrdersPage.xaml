@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:Xamp.Views.OrderPages"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Xamp.Views.OrdersPage"
+             Title="ORDERS">
+    <!--Pages can be added as references or inline-->
+    <!--<ContentPage Title="Inventory Summary" />
+  <ContentPage Title="Inventory Detail" />
+  <ContentPage Title="Search Barcodes" />-->
+    <local:OrderList Title="ORDERS">
+
+    </local:OrderList>
+    <local:OrderListA Title="APPROVED ORDERS">
+
+    </local:OrderListA>
+</TabbedPage> 

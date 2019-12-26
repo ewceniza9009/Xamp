@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xamp.UIEffects"
+             xmlns:UICustomRenderers ="clr-namespace:Xamp.UICustomRenderers"
+             mc:Ignorable="d"
+             x:Class="Xamp.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <StackLayout Margin="0,5,0,200">
+            <UICustomRenderers:EntryTextBox x:Name="urlLinkMem"
+                    Placeholder="URL" 
+                    Margin="20,0,20,0">
+                <Entry.Effects>
+                    <local:ClearEntryEffect />
+                </Entry.Effects>
+            </UICustomRenderers:EntryTextBox>
+        </StackLayout>
+        <StackLayout VerticalOptions="Center">
+            <UICustomRenderers:EntryTextBox x:Name="userMem"
+                                   Placeholder="User" 
+                                   Margin="20,0,20,0">
+                <Entry.Effects>
+                    <local:ClearEntryEffect />
+                </Entry.Effects>
+            </UICustomRenderers:EntryTextBox>
+            <UICustomRenderers:EntryTextBox x:Name="passMem"
+                                   Placeholder="Password" 
+                                   Margin="20,0,20,0"
+                                   IsPassword="True">
+                <Entry.Effects>
+                    <local:ClearEntryEffect />
+                </Entry.Effects>
+            </UICustomRenderers:EntryTextBox>
+            <Button x:Name="CmdLogin" 
+                                    Text="Login"
+                                    Margin="20,0,20,0"
+                                    Clicked="CmdLogin_Clicked"
+                                    BackgroundColor="Blue"
+                                    TextColor="White"></Button>
+
+            <Label x:Name="loginStat"
+                                   Margin="20,10,20,0"
+                                   HorizontalOptions="Center"></Label>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xamp.UIEffects"
+             xmlns:UICustomRenderers ="clr-namespace:Xamp.UICustomRenderers"
+             mc:Ignorable="d"
+             x:Class="Xamp.Views.HomePages.InventorySummary">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical">
+                <!--Place new controls here-->
+                <StackLayout x:Name="TopStackPanel"
+                             Orientation="Horizontal"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             HeightRequest="50"
+                             Margin="5,5,0,0">
+                    <UICustomRenderers:EntryTextBox x:Name="SearchItem"
+                            WidthRequest="290">
+                        <Entry.Effects>
+                            <local:ClearEntryEffect x:Name="SearchItemEffect"/>
+                        </Entry.Effects>
+                        <!--<Entry.Style>
+                            <Style TargetType="Entry">
+                                <Style.Triggers>
+                                    <EventTrigger Event="Clicked">
+                                        
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Entry.Style>-->
+                    </UICustomRenderers:EntryTextBox>    
+                    <Button x:Name="CmdSearchMem"
+                            Text="Find"
+                            BackgroundColor="Blue"
+                            TextColor="White"
+                            ImageSource="search.png"
+                            Clicked="CmdSearchMem_Clicked">
+                    </Button>
+                </StackLayout>
+                <ListView x:Name="listInventory">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal" 
+                                         HeightRequest="20" 
+                                         VerticalOptions="Center"
+                                         Padding="20,0,20,0">
+                                        <Label Text="{Binding Material}" TextColor="Black"></Label>
+                                        <Label Text="{Binding Quantity, StringFormat='| Qty: {0:#,#,#,#.00}'}" TextColor="Black"></Label>
+                                        <Label Text="{Binding Weight, StringFormat='| Wt: {0:#,#,#,#.00}'}" TextColor="Black"></Label>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
